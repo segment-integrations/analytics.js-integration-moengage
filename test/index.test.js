@@ -10,7 +10,8 @@ describe('MoEngage', function() {
   var analytics;
   var moengage;
   var options = {
-    appId: 'AJ1WTFKFAMAG8045ZXSQ9GMK'
+    appId: 'AJ1WTFKFAMAG8045ZXSQ9GMK',
+    debugMode: false
   };
 
   beforeEach(function() {
@@ -30,7 +31,8 @@ describe('MoEngage', function() {
 
   it('should have the correct options', function() {
     analytics.compare(MoEngage, integration('MoEngage')
-    .option('appId', ''));
+    .option('appId', '')
+    .option('debugMode', false));
   });
 
   describe('before loading', function() {
