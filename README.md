@@ -1,6 +1,6 @@
-# analytics.js-integration-scaffold
+# analytics.js-integration-moengage
 
-Scaffold for Analytics.js integrations.
+MoEngage for Analytics.js integrations.
 
 ## License
 
