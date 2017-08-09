@@ -31,7 +31,7 @@ describe('MoEngage', function() {
 
   it('should have the correct options', function() {
     analytics.compare(MoEngage, integration('MoEngage')
-    .option('appId', '')
+    .option('apiKey', '')
     .option('debugMode', false));
   });
 
@@ -83,7 +83,8 @@ describe('MoEngage', function() {
           phone: '4012229047',
           username: 'hanothan',
           gender: 'male',
-          birthday: '08/13/1991'
+          birthday: '08/13/1991',
+          customTrait: true
         };
         analytics.identify('han123', traits);
         analytics.called(moengage._client.add_unique_user_id, 'han123');
@@ -94,6 +95,7 @@ describe('MoEngage', function() {
         analytics.called(moengage._client.add_user_name, traits.username);
         analytics.called(moengage._client.add_gender, traits.gender);
         analytics.called(moengage._client.add_birthday, traits.birthday);
+        analytics.called(moengage._client.add_user_attribute, 'customTrait', traits.customTrait);
       });
     });
 
@@ -102,7 +104,7 @@ describe('MoEngage', function() {
         analytics.stub(moengage._client, 'track_event');
       });
 
-      it('should send identify', function() {
+      it('should send track', function() {
         var properties = {
           ice: 'fire',
           nested: ['ha', 'haha', { hahaha: 'hahahahaha' }],
