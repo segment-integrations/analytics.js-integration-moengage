@@ -4,7 +4,7 @@
 var baseConfig = require('./karma.conf');
 
 var customLaunchers = {
-  //@hankim - this integration doesn't support internet explorer
+  // @hankim - this integration doesn't support internet explorer
   sl_chrome_latest: {
     base: 'SauceLabs',
     browserName: 'chrome',
