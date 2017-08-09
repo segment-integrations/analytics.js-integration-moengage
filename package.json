@@ -1,7 +1,7 @@
 {
   "name": "@segment/analytics.js-integration-moengage",
   "description": "The MoEngage analytics.js integration.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "keywords": [
     "analytics.js",
     "analytics.js-integration",
@@ -23,7 +23,10 @@
   },
   "homepage": "https://github.com/segment-integrations/analytics.js-integration-moengage#readme",
   "dependencies": {
-    "@segment/analytics.js-integration": "^3.2.0"
+    "@ndhoule/each": "^2.0.1",
+    "@segment/analytics.js-integration": "^3.2.0",
+    "do-when": "^1.0.0",
+    "obj-case": "^0.2.0"
   },
   "devDependencies": {
     "@segment/analytics.js-core": "^3.0.0",

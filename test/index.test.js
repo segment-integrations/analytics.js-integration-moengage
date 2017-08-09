@@ -10,7 +10,8 @@ describe('MoEngage', function() {
   var analytics;
   var moengage;
   var options = {
-    appId: 'AJ1WTFKFAMAG8045ZXSQ9GMK'
+    apiKey: 'AJ1WTFKFAMAG8045ZXSQ9GMK',
+    debugMode: true // default is false in mongo but for testing purposes this is fine
   };
 
   beforeEach(function() {
@@ -30,7 +31,8 @@ describe('MoEngage', function() {
 
   it('should have the correct options', function() {
     analytics.compare(MoEngage, integration('MoEngage')
-    .option('appId', ''));
+    .option('apiKey', '')
+    .option('debugMode', false));
   });
 
   describe('before loading', function() {
@@ -47,9 +49,7 @@ describe('MoEngage', function() {
   });
 
   describe('loading', function() {
-    // TODO: skipping because we don't have a reliable way to test service workers
-    // and since ME SDK relies on serviceworker.js this test timeouts
-    it.skip('should load', function(done) {
+    it('should load', function(done) {
       analytics.load(moengage, done);
     });
   });
@@ -81,7 +81,8 @@ describe('MoEngage', function() {
           phone: '4012229047',
           username: 'hanothan',
           gender: 'male',
-          birthday: '08/13/1991'
+          birthday: '08/13/1991',
+          customTrait: true
         };
         analytics.identify('han123', traits);
         analytics.called(moengage._client.add_unique_user_id, 'han123');
@@ -92,6 +93,7 @@ describe('MoEngage', function() {
         analytics.called(moengage._client.add_user_name, traits.username);
         analytics.called(moengage._client.add_gender, traits.gender);
         analytics.called(moengage._client.add_birthday, traits.birthday);
+        analytics.called(moengage._client.add_user_attribute, 'customTrait', traits.customTrait);
       });
     });
 
@@ -100,7 +102,7 @@ describe('MoEngage', function() {
         analytics.stub(moengage._client, 'track_event');
       });
 
-      it('should send identify', function() {
+      it('should send track', function() {
         var properties = {
           ice: 'fire',
           nested: ['ha', 'haha', { hahaha: 'hahahahaha' }],
