@@ -71,6 +71,7 @@ describe('MoEngage', function() {
         analytics.stub(moengage._client, 'add_birthday');
         analytics.stub(moengage._client, 'add_user_attribute');
         analytics.stub(moengage._client, 'add_unique_user_id');
+        analytics.stub(moengage._client, 'destroy_session');
       });
 
       it('should send identify', function() {
@@ -94,6 +95,22 @@ describe('MoEngage', function() {
         analytics.called(moengage._client.add_gender, traits.gender);
         analytics.called(moengage._client.add_birthday, traits.birthday);
         analytics.called(moengage._client.add_user_attribute, 'customTrait', traits.customTrait);
+      });
+
+      it('should destroy session if identify is called for a new user', function() {
+        analytics.identify('drogon');
+        analytics.called(moengage._client.add_unique_user_id, 'drogon');
+        analytics.identify('night king');
+        analytics.called(moengage._client.destroy_session);
+        analytics.called(moengage._client.add_unique_user_id, 'night king');
+      });
+
+      it('should not call destroy session if identify is called for a existing user', function() {
+        analytics.identify('drogon');
+        analytics.called(moengage._client.add_unique_user_id, 'drogon');
+        analytics.identify('drogon');
+        analytics.didNotCall(moengage._client.destroy_session);
+        analytics.called(moengage._client.add_unique_user_id, 'drogon');
       });
     });
 
