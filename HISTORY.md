@@ -1,4 +1,9 @@
-x.x.x / xxxx-xx-xx
+1.0.1 / 2017-08-10
 ==================
 
-  * Initial scaffold :sparkles:
+  * Handle logout/reset automatically
+
+1.0.0 / 2017-08-09
+==================
+
+  * Initial Release :sparkles:
