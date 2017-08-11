@@ -80,7 +80,7 @@ describe('MoEngage', function() {
           lastName: 'solo',
           email: 'han@segment.com',
           phone: '4012229047',
-          username: 'hanothan',
+          name: 'han solo',
           gender: 'male',
           birthday: '08/13/1991',
           customTrait: true
@@ -91,10 +91,16 @@ describe('MoEngage', function() {
         analytics.called(moengage._client.add_last_name, traits.lastName);
         analytics.called(moengage._client.add_email, traits.email);
         analytics.called(moengage._client.add_mobile, traits.phone);
-        analytics.called(moengage._client.add_user_name, traits.username);
+        analytics.called(moengage._client.add_user_name, traits.name);
         analytics.called(moengage._client.add_gender, traits.gender);
         analytics.called(moengage._client.add_birthday, traits.birthday);
         analytics.called(moengage._client.add_user_attribute, 'customTrait', traits.customTrait);
+      });
+
+      it('should fall back to traits.username', function() {
+        var traits = { username: 'prince oberyn' };
+        analytics.identify('han123', traits);
+        analytics.called(moengage._client.add_user_name, traits.username);
       });
 
       it('should destroy session if identify is called for a new user', function() {
