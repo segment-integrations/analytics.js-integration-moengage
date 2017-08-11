@@ -1,3 +1,8 @@
+1.0.2 / 2017-08-11
+==================
+
+  * Map `traits.name` to `add_user_name` with fallback to `traits.username`  
+
 1.0.1 / 2017-08-10
 ==================
 
