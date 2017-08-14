@@ -103,6 +103,13 @@ describe('MoEngage', function() {
         analytics.called(moengage._client.add_user_name, traits.username);
       });
 
+      it('it should handle traits.username', function() {
+        var traits = { name: 'Daenerys Stormborn of the House Targaryen, First of Her Name, the Unburnt, Queen of the Andals and the First Men, Khaleesi of the Great Grass Sea, Breaker of Chains, and Mother of Dragons', username: 'khaleesi' };
+        analytics.identify('targaryen2', traits);
+        analytics.called(moengage._client.add_user_name, traits.name);
+        analytics.called(moengage._client.add_user_attribute, 'username', traits.username);
+      });
+
       it('should destroy session if identify is called for a new user', function() {
         analytics.identify('drogon');
         analytics.called(moengage._client.add_unique_user_id, 'drogon');
