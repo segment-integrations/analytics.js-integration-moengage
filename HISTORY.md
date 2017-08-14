@@ -1,12 +1,17 @@
+1.0.4 / 2017-08-14
+==================
+
+  * Fix bug with sending custom user attribtues
+
 1.0.3 / 2017-08-14
 ==================
 
-  * Don't send `traits.username` as custom attribute again  
+  * Don't send `traits.username` as custom attribute again
 
 1.0.2 / 2017-08-11
 ==================
 
-  * Map `traits.name` to `add_user_name` with fallback to `traits.username`  
+  * Map `traits.name` to `add_user_name` with fallback to `traits.username`
 
 1.0.1 / 2017-08-10
 ==================

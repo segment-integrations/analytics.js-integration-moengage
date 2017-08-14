@@ -110,6 +110,12 @@ describe('MoEngage', function() {
         analytics.called(moengage._client.add_user_attribute, 'username', traits.username);
       });
 
+      it('should reject undefined values before calling partner methods', function() {
+        analytics.identify('jon snow');
+        analytics.didNotCall(moengage._client.add_user_name);
+        analytics.didNotCall(moengage._client.add_user_attribute);
+      });
+
       it('should destroy session if identify is called for a new user', function() {
         analytics.identify('drogon');
         analytics.called(moengage._client.add_unique_user_id, 'drogon');
