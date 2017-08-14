@@ -101,6 +101,7 @@ describe('MoEngage', function() {
         var traits = { username: 'prince oberyn' };
         analytics.identify('han123', traits);
         analytics.called(moengage._client.add_user_name, traits.username);
+        analytics.didNotCall(moengage._client.add_user_attribute); // checks we dont double send as custom attribute as well
       });
 
       it('should destroy session if identify is called for a new user', function() {

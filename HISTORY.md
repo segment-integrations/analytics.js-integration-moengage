@@ -1,3 +1,8 @@
+1.0.3 / 2017-08-14
+==================
+
+  * Don't send `traits.username` as custom attribute again  
+
 1.0.2 / 2017-08-11
 ==================
 
