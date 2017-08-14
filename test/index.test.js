@@ -101,7 +101,13 @@ describe('MoEngage', function() {
         var traits = { username: 'prince oberyn' };
         analytics.identify('han123', traits);
         analytics.called(moengage._client.add_user_name, traits.username);
-        analytics.didNotCall(moengage._client.add_user_attribute); // checks we dont double send as custom attribute as well
+      });
+
+      it('it should handle traits.username', function() {
+        var traits = { name: 'Daenerys Stormborn of the House Targaryen, First of Her Name, the Unburnt, Queen of the Andals and the First Men, Khaleesi of the Great Grass Sea, Breaker of Chains, and Mother of Dragons', username: 'khaleesi' };
+        analytics.identify('targaryen2', traits);
+        analytics.called(moengage._client.add_user_name, traits.name);
+        analytics.called(moengage._client.add_user_attribute, 'username', traits.username);
       });
 
       it('should destroy session if identify is called for a new user', function() {
