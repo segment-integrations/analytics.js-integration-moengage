@@ -25,7 +25,7 @@ describe('MoEngage', function() {
   afterEach(function() {
     analytics.restore();
     analytics.reset();
-    moengage.reset();
+    // moengage.reset();
     sandbox();
   });
 
@@ -146,6 +146,18 @@ describe('MoEngage', function() {
         };
         analytics.track('The Song', properties);
         analytics.called(moengage._client.track_event, 'The Song', properties);
+      });
+    });
+
+    describe('#reset', function() {
+      beforeEach(function() {
+        analytics.stub(moengage._client, 'destroy_session');
+      });
+
+      it('should destroy session upon reset', function() {
+        analytics.identify('justin');
+        moengage.reset();
+        analytics.called(moengage._client.destroy_session);
       });
     });
   });
