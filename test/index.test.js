@@ -25,7 +25,6 @@ describe('MoEngage', function() {
   afterEach(function() {
     analytics.restore();
     analytics.reset();
-    // moengage.reset();
     sandbox();
   });
 
